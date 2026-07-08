@@ -1,6 +1,11 @@
 const express = require('express');
+const morgan = require('morgan');
+
 const app = express();
 const port = 3000;
+
+// Tích hợp morgan vào app
+app.use(morgan('combined'));
 
 // CSS dùng chung cho toàn bộ trang
 const baseStyle = `
@@ -191,21 +196,21 @@ app.get('/', (req, res) => {
     <html lang="vi">
     <head>
       <meta charset="UTF-8">
-      <title>Blog nhóm</title>
+      <title>Giới thiệu bản thân</title>
       ${baseStyle}
     </head>
     <body>
       <div class="card">
-        <div class="avatar">NG</div>
-        <h1>Chào mừng đến với Blog nhóm của tôi!</h1>
-        <p class="subtitle">Nơi chia sẻ những điều thú vị trong cuộc sống</p>
+        <div class="avatar">TĐ</div>
+        <h1>Xin chào! Tôi là Phan Thị Thanh Hoài</h1>
+        <p class="subtitle">Sinh viên năm 3 - Trường Cao đẳng Viễn Đông</p>
         <div class="nav">
           <a href="/">Trang chủ</a>
-          <a href="/gioithieu">Giới thiệu</a>
+          <a href="/gioithieu">Thông tin chi tiết</a>
         </div>
-<p class="welcome-text">
-          Rất vui khi bạn ghé thăm trang Blog nhóm của tôi. Hãy nhấn vào mục
-          "Giới thiệu" để tìm hiểu thêm về chúng tôi nhé!
+        <p class="welcome-text">
+          Rất vui khi bạn ghé thăm trang giới thiệu bản thân của tôi. 
+          Hãy nhấn vào mục "Thông tin chi tiết" để tìm hiểu thêm về tôi nhé!
         </p>
       </div>
     </body>
@@ -219,59 +224,30 @@ app.get('/gioithieu', (req, res) => {
     <html lang="vi">
     <head>
       <meta charset="UTF-8">
-      <title>Giới thiệu nhóm</title>
+      <title>Thông tin chi tiết</title>
       ${baseStyle}
     </head>
     <body>
       <div class="container">
         <div class="card">
-          <h1>Giới thiệu về nhóm chúng tôi</h1>
-          <p class="subtitle">Nhóm có 3 thành viên</p>
+          <div class="avatar">TĐ</div>
+          <h1>Thông tin chi tiết về tôi</h1>
+          <p class="subtitle">Phan Thị Thanh Hoài</p>
           <div class="nav">
             <a href="/">Trang chủ</a>
-            <a href="/gioithieu">Giới thiệu</a>
+            <a href="/gioithieu">Thông tin chi tiết</a>
           </div>
-          <div class="members-grid">
-            <div class="member-card">
-              <div class="member-avatar">TĐ</div>
-              <div class="member-name">Trần Thế Đình</div>
-              <ul class="member-info">
-                <li><span class="label">Tuổi:</span><span class="value">21</span></li>
-                <li><span class="label">Giới tính:</span><span class="value">Nam</span></li>
-                <li><span class="label">Ngày sinh:</span><span class="value">28/06/2005</span></li>
-                <li><span class="label">MSSV:</span><span class="value">2306022032</span></li>
-                <li><span class="label">Lớp:</span><span class="value">17THC</span></li>
-                <li><span class="label">Địa chỉ:</span><span class="value">TP.HCM</span></li>
-                
-              </ul>
-            </div>
-            <div class="member-card">
-              <div class="member-avatar">TP</div>
-              <div class="member-name">Dương Thanh Phong</div>
-              <ul class="member-info">
-                <li><span class="label">Tuổi:</span><span class="value">22</span></li>
-                <li><span class="label">Giới tính:</span><span class="value">Nam</span></li>
-                <li><span class="label">Ngày sinh:</span><span class="value">20/12/2004</span></li>
-                <li><span class="label">MSSV:</span><span class="value">2306022002</span></li>
-                <li><span class="label">Lớp:</span><span class="value">17THC</span></li>
-                <li><span class="label">Địa chỉ:</span><span class="value">Cần Thơ</span></li>
-                
-              </ul>
-            </div>
-            <div class="member-card">
-              <div class="member-avatar">TH</div>
-              <div class="member-name">Phan Thị Thanh Hoài</div>
-              <ul class="member-info">
-                <li><span class="label">Tuổi:</span><span class="value">21</span></li>
-                <li><span class="label">Giới tính:</span><span class="value">Nữ</span></li>
-                <li><span class="label">Ngày sinh:</span><span class="value">26/11/2005</span></li>
-                <li><span class="label">MSSV:</span><span class="value">2306012019</span></li>
-                <li><span class="label">Lớp:</span><span class="value">17THC</span></li>
-                <li><span class="label">Địa chỉ:</span><span class="value">Dak Lak</span></li>
-                
-              </ul>
-            </div>
-          </div>
+          <ul class="info-list">
+            <li><span class="label">Họ và tên:</span><span class="value">Phan Thị Thanh Hoài</span></li>
+            <li><span class="label">Tuổi:</span><span class="value">21 tuổi</span></li>
+            <li><span class="label">Giới tính:</span><span class="value">Nữ</span></li>
+            <li><span class="label">Ngày sinh:</span><span class="value">26/11/2005</span></li>
+            <li><span class="label">MSSV:</span><span class="value">2306012019</span></li>
+            <li><span class="label">Lớp:</span><span class="value">17THC</span></li>
+            <li><span class="label">Trường:</span><span class="value">Trường Cao đẳng Viễn Đông</span></li>
+            <li><span class="label">Địa chỉ:</span><span class="value">TP.HCM</span></li>
+            
+          </ul>
         </div>
       </div>
     </body>
